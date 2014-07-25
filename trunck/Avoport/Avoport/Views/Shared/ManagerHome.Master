@@ -1,0 +1,94 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+
+<%@ Import Namespace="Helpers" %>
+<!DOCTYPE html>
+ <%if (Request.IsAuthenticated) {       
+           %>
+    welcome<strong><%:Page.User.Identity.Name %></strong>!
+    [<%:Html.ActionLink("Logout","Logout","Account") %>]
+<%
+}
+else
+{
+       
+       %>
+ [<%:Html.ActionLink("Logout","Logout","Account") %>]
+<%} %>
+   
+
+
+<html lang="en">
+   
+
+    <head runat="server">
+        <meta http-equiv="Content-Type" content="text/html"  charset="utf-8" />
+        <meta name="description" content="avoport" />
+        <meta name="" />
+        <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+        <link href="<%: Url.Content("~/favicon.ico") %>" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        <%: Styles.Render("~/Content/css") %>
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </head>
+<body>
+    
+        <div class="none"><a href="#maincontent">skip to the main content area of this page</a></div>
+        <div class="logo logo-inner"><a href="<%= Url.Action("Index", "Home") %>">Avoport</a></div>   
+            <div class="header-container">
+                <div class="nav-main">
+                         <ul>     
+                                <% if (Html.IsCurrentAction("Index", "Home")) { %>
+                                <li class="first active"><span class="active"></span><%= Html.ActionLink("home", "Index", "Home") %></li>
+                                <% } else { %>
+                                  <li class="first"><%= Html.ActionLink("home", "Index", "Home") %></li>
+                                    <% }%>
+
+                                       <% if (Html.IsCurrentAction("About", "Home")) { %>
+                                            <li class="active"><span class="active"></span><%= Html.ActionLink("about", "About", "Home") %></li>
+                                           <% } else { %>
+                                           <li><%= Html.ActionLink("about", "About", "Home") %>
+                                              
+                                           </li>
+                                           <% }%>
+                             </ul>
+  </div>  </div>
+    <div class="content-main"><a name="maincontent" id="maincontent"></a>
+            <asp:ContentPlaceHolder ID="FeaturedContent" runat="server" >
+            </asp:ContentPlaceHolder>
+            <section class="content-wrapper main-content clear-fix">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" >
+               
+                </asp:ContentPlaceHolder>
+            </section></div>
+                <div>
+           <br />
+           <br />
+           <br />
+           <br />
+           <br />
+           <br />
+           <br />
+           <br />
+        </div>           
+        
+                <div class="content-side">
+     <ul class="list-links">
+      <li><a href="#">Quisque </a></li>
+      <li> <a href="#">Praesent </a></li>
+      <li> <a href="#">Vivamus </a></li>
+      <li><a href="#">Morbi </a></li>
+      <li><a href="#">Suspendisse </a></li>
+      <li><a href="#">Bibendum </a></li>
+      <li><a href="#">Maecenas </a></li>
+    </ul>
+   
+  </div>
+        
+  
+        
+        <%: Scripts.Render("~/bundles/jquery") %>
+        <asp:ContentPlaceHolder ID="ScriptsSection" runat="server" />
+ 
+</body>
+</html>
